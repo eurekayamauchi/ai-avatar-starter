@@ -21,15 +21,13 @@ body {
 
 .container {
     display: flex;
-    flex: 0 0 auto;
+    flex: 20px 20px auto;
     flex-flow: row nowrap;
     gap: 10px;
-    /* height: fit-content; */
-    height: 100%;
-    overflow: auto;
     position: relative;
     width: auto;
     gap: 64px;
+    padding: 10px
 }
 
 .header {
@@ -49,11 +47,15 @@ body {
 .header-title h1 {
     width: 100%;
     font-weight: 700;
-    font-size: 72px;
-    letter-spacing: -4px;
+    font-size: 40px;
+    letter-spacing: 2px;
     line-height: 1.2em;
     text-align: center;
     margin: 0;
+}
+
+.subtitle {
+    text-align: center;
 }
 
 .header-subtitle h2 {
@@ -62,6 +64,14 @@ body {
     font-weight: 400;
     line-height: 1.4em;
     color: rgba(255, 255, 255, 0.75);
+}
+
+.subtitle p {
+    text-align: center;
+    margin: 5px;
+    padding: 3px;
+    font-size: 13px;
+    font-style: normal;
 }
 
 .prompt-container {
@@ -74,6 +84,7 @@ body {
     height: min-content;
     padding: 0px;
     width: min-content;
+    margin: 20px;
 }
 
 .prompt-box {
@@ -93,6 +104,7 @@ body {
     gap: 10px;
     overflow: hidden;
     padding: 20px;
+    margin: 3px;
     position: relative;
     width: 610px;
     max-width: 1200px;
@@ -124,7 +136,7 @@ body {
     display: flex;
     place-content: center;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     flex: 0 0 auto;
     flex-flow: row nowrap;
     gap: 12px;
@@ -326,4 +338,22 @@ body {
     100% {
         transform: rotate(360deg);
     }
+}
+      
+.center {
+    display: flex;
+    justify-content: center;     
+    flex-flow: row wrap; /*flex-direction + flex-wrapの記述が可能*/
+    max-width:900px;
+}
+
+.center .twitter-tweet{
+    margin: 5px;
+}
+
+.center img {
+    object-fit: cover;
+    max-width:100px;
+    max-height:250px;
+    margin: 5px;
 }
