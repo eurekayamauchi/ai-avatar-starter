@@ -80,11 +80,11 @@ body {
     display: flex;
     flex: 0 0 auto;
     flex-flow: column nowrap;
-    gap: 16px;
+    gap: 10px;
     height: min-content;
     padding: 0px;
     width: min-content;
-    margin: 20px;
+    margin: 10px;
 }
 
 .prompt-box {
@@ -103,7 +103,7 @@ body {
     flex-flow: column nowrap;
     gap: 10px;
     overflow: hidden;
-    padding: 20px;
+    padding: 10px;
     margin: 3px;
     position: relative;
     width: 610px;
@@ -131,20 +131,34 @@ body {
     border-color: rgba(255, 255, 255, 0.75)
 }
 
-
-.prompt-buttons {
+.prompts-btn-box {
     display: flex;
     place-content: center;
     align-items: center;
     justify-content: center;
-    flex: 0 0 auto;
-    flex-flow: row nowrap;
-    gap: 12px;
-    height: min-content;
+    flex-flow: row wrap;
+}
+
+.prompts-btn-box {
+    display: flex;
+    justify-content: center;
     overflow: hidden;
-    padding: 0px;
-    position: relative;
-    width: 100%;
+
+}
+
+.prompts-btn {
+    text-align: center;
+    background-color: #9AA3EE;
+    margin: 5px;
+    border-radius: 100px;
+    min-width: 100px;
+    width: min-content;
+    will-change: transform;
+    cursor: pointer;
+}
+
+.prompts-btn.selected {
+    background-color: #F32E98;
 }
 
 .generate-button {
@@ -341,10 +355,8 @@ body {
 }
       
 .center {
-    display: flex;
-    justify-content: center;     
-    flex-flow: row wrap; /*flex-direction + flex-wrapの記述が可能*/
-    max-width:900px;
+    text-align: center;
+    overflow-x: scroll;
 }
 
 .center .twitter-tweet{
@@ -352,8 +364,6 @@ body {
 }
 
 .center img {
-    object-fit: cover;
-    max-width:100px;
-    max-height:250px;
+    width:120vw;
     margin: 5px;
 }

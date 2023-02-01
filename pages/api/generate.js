@@ -11,7 +11,7 @@ const bufferToBase64 = (buffer) => {
 const generateAction = async (req, res) => {
     console.log('Received request. ' + req.body );
 
-    const input = JSON.parse(req.body).input;
+    const input = JSON.parse(req.body).postData;
 
     const finalInput = input.replace(/raza/gi, 'abraza');
 

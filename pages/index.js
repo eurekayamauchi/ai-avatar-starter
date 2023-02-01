@@ -3,28 +3,17 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import buildspaceLogo from '../assets/buildspace-logo.png';
-import img1 from '../assets/top_img1.png';
-import img2 from '../assets/top_img2.png';
-import img3 from '../assets/top_img3.png';
-import img4 from '../assets/top_img4.png';
-import img5 from '../assets/top_img5.png';
-import img6 from '../assets/top_img6.png';
-import img7 from '../assets/top_img7.png';
-import img8 from '../assets/top_img8.png';
-import img9 from '../assets/top_img9.png';
-import img10 from '../assets/top_img10.png';
-import img11 from '../assets/top_img11.png';
-import img12 from '../assets/top_img12.png';
-import img13 from '../assets/top_img13.png';
-import img14 from '../assets/top_img14.png';
-import img15 from '../assets/top_img15.png';
-import img16 from '../assets/top_img16.png';
+import img17 from '../assets/top_img17.png';
 
 const Home = () => {
   // Don't retry more than 20 times
   const maxRetries = 20;
   // Create state property
   const [input, setInput] = useState('');
+  // Create state property
+  const [preset, setPreset] = useState('');
+  // Create state property
+  const [artists, setArtists] = useState('');
   // Create new state property
   const [img, setImg] = useState('');
   // Numbers of retries 
@@ -39,6 +28,54 @@ const Home = () => {
   const onChange = (event) => {
     setInput(event.target.value);
   };
+
+  const isActive = (val) => {
+    const currentItem = preset.split(",");
+    if(currentItem && currentItem.length > 0){
+      for(const item of currentItem) {
+        if(item && item == val){
+          return true
+        }
+      }
+      return false
+    } else {
+      return false
+    }
+  }
+
+  const onChangeArtist = (event) => {
+    setArtists(event.target.value);
+  };
+
+  const setPresets = (e) => {
+    
+    const val = e.currentTarget.getAttribute('data-val')
+    let activeValue = false
+    let resultInput = "";
+    const currentItem = preset.split(",");
+    if(currentItem && currentItem.length > 0){
+      for(const item of currentItem) {
+        if(!item){
+          continue;
+        }
+        if(item == val){
+          activeValue = true
+          continue;
+        }
+        resultInput += `,${item}`
+      }
+      if(!activeValue){
+        resultInput += `,${val}`
+      }
+      if(resultInput[0] == ','){
+        resultInput = resultInput.slice(1)
+      }
+      setPreset(resultInput);
+    } else {
+      setPreset(`${val}`);
+    }
+  }
+
   const generateAction = async () => {
     console.log('Generating...');
 
@@ -58,12 +95,20 @@ const Home = () => {
       setRetry(0);
     }
 
+    let postData = `${input}`
+    if(preset){
+      postData += `, ${preset}`
+    }
+    if(artists){
+      postData += `, by ${artists}`
+    }
+
     const response = await fetch('/api/generate', {
       method: 'POST',
       headers: {
         'Content-Type': 'image/jpeg',
       },
-      body: JSON.stringify({ input }),
+      body: JSON.stringify({ postData }),
     });
 
     const data = await response.json();
@@ -139,33 +184,101 @@ const Home = () => {
           </div>
           
           <div className="center">
-            <Image src={img1} />
-            <Image src={img2} />
-            <Image src={img3} />
-            <Image src={img4} />
-            <Image src={img5} />
-            <Image src={img6} />
-            <Image src={img7} />
-            <Image src={img8} />
-            <Image src={img9} />
-            <Image src={img10} />
-            <Image src={img11} />
-            <Image src={img12} />
-            <Image src={img13} />
-            <Image src={img14} />
-            <Image src={img15} />
-            <Image src={img16} />
+            <Image src={img17} />
           </div>
 
           {/* Add prompt container here */}
           <div className="prompt-container">
 
-            <a className="prompts-btn" onClick={generateAction}>
-              {/* Tweak to show a loading indicator */}
-              <div className="prompts">
-                <p></p>
-              </div>
-            </a>
+            <input className="prompt-box" value={preset} readOnly inputProps={{ readonly: true }} placeholder='readonly. Press the button below.'/>
+            
+            <div className='prompts-btn-box'>
+              <a 
+              className={
+                isActive("girl") ? 'prompts-btn selected' : 'prompts-btn'
+              } data-val="girl" onClick={setPresets}>
+                {/* Tweak to show a loading indicator */}
+                <div className="prompts">
+                  <p>girl</p>
+                </div>
+              </a>
+              <a className={
+                isActive("boy") ? 'prompts-btn selected' : 'prompts-btn'
+                } data-val="boy" onClick={setPresets}>
+                {/* Tweak to show a loading indicator */}
+                <div className="prompts">
+                  <p>boy</p>
+                </div>
+              </a>
+              <a className={
+                isActive("cyberpunk") ? 'prompts-btn selected' : 'prompts-btn'
+              } data-val="cyberpunk" onClick={setPresets}>
+                {/* Tweak to show a loading indicator */}
+                <div className="prompts">
+                  <p>cyberpunk</p>
+                </div>
+              </a>
+              <a className={
+                isActive("shadows") ? 'prompts-btn selected' : 'prompts-btn'
+              } data-val="shadows" onClick={setPresets}>
+                {/* Tweak to show a loading indicator */}
+                <div className="prompts">
+                  <p>shadows</p>
+                </div>
+              </a>
+              <a className={
+                isActive("concept art") ? 'prompts-btn selected' : 'prompts-btn'
+              } data-val="concept art" onClick={setPresets}>
+                {/* Tweak to show a loading indicator */}
+                <div className="prompts">
+                  <p>concept art</p>
+                </div>
+              </a>
+              <a className={
+                isActive("4k") ? 'prompts-btn selected' : 'prompts-btn'
+              } data-val="4k" onClick={setPresets}>
+                {/* Tweak to show a loading indicator */}
+                <div className="prompts">
+                  <p>4k</p>
+                </div>
+              </a>
+              <a className={
+                isActive("8k") ? 'prompts-btn selected' : 'prompts-btn'
+              } data-val="8k" onClick={setPresets}>
+                {/* Tweak to show a loading indicator */}
+                <div className="prompts">
+                  <p>8k</p>
+                </div>
+              </a>
+              <a className={
+                isActive("anime") ? 'prompts-btn selected' : 'prompts-btn'
+              } data-val="anime" onClick={setPresets}>
+                {/* Tweak to show a loading indicator */}
+                <div className="prompts">
+                  <p>anime</p>
+                </div>
+              </a>
+              <a className={
+                isActive("real") ? 'prompts-btn selected' : 'prompts-btn'
+              } data-val="real" onClick={setPresets}>
+                {/* Tweak to show a loading indicator */}
+                <div className="prompts">
+                  <p>real</p>
+                </div>
+              </a>
+              <a className={
+                isActive("fantasy") ? 'prompts-btn selected' : 'prompts-btn'
+              } data-val="fantasy" onClick={setPresets}>
+                {/* Tweak to show a loading indicator */}
+                <div className="prompts">
+                  <p>fantasy</p>
+                </div>
+              </a>
+            </div>
+            
+            <input className="prompt-box" value={artists} onChange={onChangeArtist} placeholder='your favourite illustrators.'/>
+            
+            
             <input className="prompt-box" value={input} onChange={onChange} placeholder='pls input "Orlando Bloom"'/>
             {/* Add your prompt button in the prompt container */}
             <div className="prompt-buttons">
