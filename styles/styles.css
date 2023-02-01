@@ -355,8 +355,10 @@ body {
 }
       
 .center {
-    text-align: center;
-    overflow-x: scroll;
+    display: flex;
+    justify-content: center;     
+    flex-flow: row wrap; /*flex-direction + flex-wrapの記述が可能*/
+    max-width:900px;
 }
 
 .center .twitter-tweet{
@@ -364,6 +366,8 @@ body {
 }
 
 .center img {
-    width:120vw;
+    object-fit: cover;
+    max-width:100px;
+    max-height:250px;
     margin: 5px;
 }

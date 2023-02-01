@@ -3,7 +3,22 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
 import buildspaceLogo from '../assets/buildspace-logo.png';
-import img17 from '../assets/top_img17.png';
+import img1 from '../assets/top_img1.png';
+import img2 from '../assets/top_img2.png';
+import img3 from '../assets/top_img3.png';
+import img4 from '../assets/top_img4.png';
+import img5 from '../assets/top_img5.png';
+import img6 from '../assets/top_img6.png';
+import img7 from '../assets/top_img7.png';
+import img8 from '../assets/top_img8.png';
+import img9 from '../assets/top_img9.png';
+import img10 from '../assets/top_img10.png';
+import img11 from '../assets/top_img11.png';
+import img12 from '../assets/top_img12.png';
+import img13 from '../assets/top_img13.png';
+import img14 from '../assets/top_img14.png';
+import img15 from '../assets/top_img15.png';
+import img16 from '../assets/top_img16.png';
 
 const Home = () => {
   // Don't retry more than 20 times
@@ -184,7 +199,22 @@ const Home = () => {
           </div>
           
           <div className="center">
-            <Image src={img17} />
+            <Image src={img1} />
+            <Image src={img2} />
+            <Image src={img3} />
+            <Image src={img4} />
+            <Image src={img5} />
+            <Image src={img6} />
+            <Image src={img7} />
+            <Image src={img8} />
+            <Image src={img9} />
+            <Image src={img10} />
+            <Image src={img11} />
+            <Image src={img12} />
+            <Image src={img13} />
+            <Image src={img14} />
+            <Image src={img15} />
+            <Image src={img16} />
           </div>
 
           {/* Add prompt container here */}
